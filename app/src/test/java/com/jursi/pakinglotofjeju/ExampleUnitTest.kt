@@ -1,4 +1,4 @@
-package com.jursi.pakinglotofjeju
+package com.jursi.parkinglotofjeju
 
 import org.junit.Test
 
