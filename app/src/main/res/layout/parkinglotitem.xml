@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/TV_ISTL_LCTN_ADDR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="주차장이름"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/TV_UPDT_DT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="주차장갱신시간"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/TV_GNRL_RMND_PRZN_NUM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="일반주차구역개수"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/TV_HNDC_RMND_PRZN_NUM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="장애인 주차 잔여개수"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/TV_LGVH_RMND_PRZN_NUM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="경차 주차 잔여개수"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/TV_EMVH_RMND_PRZN_NUM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="긴급차량 주차 잔여개수"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/TV_HVVH_RMND_PRZN_NUM"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="대형 잔여 주차구역 개수"
+        android:textSize="30sp" />
+
+
+</LinearLayout>
