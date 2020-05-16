@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class recyclerViewAdapter(private val context: Context, private val parkingLotList: ArrayList<ParkinglotInfo>) :
+class recyclerViewAdapter(private val context: Context, private val parkingLotList: ArrayList<ParkinglotInfoItem>) :
     RecyclerView.Adapter<recyclerViewAdapter.Holder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -27,17 +27,19 @@ class recyclerViewAdapter(private val context: Context, private val parkingLotLi
         holder.LGVH_RMND_PRZN_NUM.text = parkingLotList[position].LGVH_RMND_PRZN_NUM
         holder.EMVH_RMND_PRZN_NUM.text = parkingLotList[position].EMVH_RMND_PRZN_NUM
         holder.HVVH_RMND_PRZN_NUM.text = parkingLotList[position].HVVH_RMND_PRZN_NUM
+        holder.TV_updatedTime.text = parkingLotList[position].TV_updatedTime
 
     }
 
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val ISTL_LCTN_ADDR = itemView.findViewById<TextView>(R.id.TV_ISTL_LCTN_ADDR)
+        var ISTL_LCTN_ADDR = itemView.findViewById<TextView>(R.id.TV_ISTL_LCTN_ADDR)
         var UPDT_DT = itemView.findViewById<TextView>(R.id.TV_UPDT_DT)
         var GNRL_RMND_PRZN_NUM = itemView.findViewById<TextView>(R.id.TV_GNRL_RMND_PRZN_NUM)
         var HNDC_RMND_PRZN_NUM = itemView.findViewById<TextView>(R.id.TV_HNDC_RMND_PRZN_NUM)
         var LGVH_RMND_PRZN_NUM = itemView.findViewById<TextView>(R.id.TV_LGVH_RMND_PRZN_NUM)
         var EMVH_RMND_PRZN_NUM = itemView.findViewById<TextView>(R.id.TV_EMVH_RMND_PRZN_NUM)
         var HVVH_RMND_PRZN_NUM = itemView.findViewById<TextView>(R.id.TV_HVVH_RMND_PRZN_NUM)
+        var TV_updatedTime = itemView.findViewById<TextView>(R.id.TV_updatedTime)
 
     }
 
