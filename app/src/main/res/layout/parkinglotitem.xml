@@ -1,57 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="400dp"
+    >
 
-    <TextView
-        android:id="@+id/TV_ISTL_LCTN_ADDR"
-        android:layout_width="match_parent"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="주차장이름"
-        android:textSize="30sp" />
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/TV_UPDT_DT"
-        android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/TV_ISTL_LCTN_ADDR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="인제북쪽주차장"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/TV_UPDT_DT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="20200516020412"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/TV_GNRL_RMND_PRZN_NUM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="남은 일반 주차구역 100"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/TV_HNDC_RMND_PRZN_NUM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="남은 장애인용 주차구역 100"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/TV_LGVH_RMND_PRZN_NUM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="남은 경차 주차구역 100"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/TV_EMVH_RMND_PRZN_NUM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="남은 긴급차량 주차구역 100"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/TV_HVVH_RMND_PRZN_NUM"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="남은 대형 주차구역 개수 100"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/TV_updatedTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="13시간 00분 전 주차장 상황"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="#0f000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuideline1"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalGuideline1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="주차장갱신시간"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/TV_GNRL_RMND_PRZN_NUM"
-        android:layout_width="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2"/>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/verticalGuideline2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="일반주차구역개수"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/TV_HNDC_RMND_PRZN_NUM"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="장애인 주차 잔여개수"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/TV_LGVH_RMND_PRZN_NUM"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="경차 주차 잔여개수"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/TV_EMVH_RMND_PRZN_NUM"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="긴급차량 주차 잔여개수"
-        android:textSize="30sp" />
-
-    <TextView
-        android:id="@+id/TV_HVVH_RMND_PRZN_NUM"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="대형 잔여 주차구역 개수"
-        android:textSize="30sp" />
-
-
-</LinearLayout>
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
