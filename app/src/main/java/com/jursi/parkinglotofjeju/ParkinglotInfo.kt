@@ -1,7 +1,7 @@
 package com.jursi.parkinglotofjeju
 
 
-class ParkinglotInfo {
+class ParkinglotInfoItem {
 
     internal var ISTL_LCTN_ADDR: String? = null //주차장 이름
     fun saveISTL_LCTN_ADDR(ISTL_LCTN_ADDR: String?) {
@@ -30,5 +30,9 @@ class ParkinglotInfo {
     internal var HVVH_RMND_PRZN_NUM: String? = null // 대형 잔여 주차구역 개수
     fun saveHVVH_RMND_PRZN_NUM(HVVH_RMND_PRZN_NUM: String?) {
         this.HVVH_RMND_PRZN_NUM = HVVH_RMND_PRZN_NUM
+    }
+    internal var TV_updatedTime: String? = null
+    fun saveTV_updatedTime(TV_updatedTime: String?) {
+        this.TV_updatedTime = TV_updatedTime
     }
 }
