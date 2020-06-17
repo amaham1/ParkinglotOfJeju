@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:padding="5dp"
-            android:text="칠성골"
+            android:text="칠성골골골골골골"
             android:textColor="#ffffff"
             android:textSize="25sp"
             android:textStyle="bold" />
@@ -32,8 +32,9 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:padding="5dp">
 
@@ -49,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:text="13"
+                android:text=""
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -63,8 +64,9 @@
 
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:padding="5dp">
 
@@ -80,7 +82,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="13"
+                android:text=""
                 android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
