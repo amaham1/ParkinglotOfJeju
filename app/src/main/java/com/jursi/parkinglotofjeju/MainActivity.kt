@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE) {
             if (resultCode != Activity.RESULT_OK) {
-                toast("업데이트를 완료하지 못했어요. 앱을 종료합니다")
+                toast("업데이트를 거부했어요\n 원할한 어플 사용을 위해 업데이트를 해주세요")
             }
         }
     }
@@ -141,6 +141,7 @@ class MainActivity : AppCompatActivity() {
             } else { }// 업데이트 없으면 다음 액티비티로
         }
     }
+
     //권한관련
     private fun getPermission() {
         TedRx2Permission.with(this)
@@ -163,6 +164,7 @@ class MainActivity : AppCompatActivity() {
                 { }
             )
     }
+
     //광고
     private fun getADmob() {
         //광고
@@ -170,6 +172,7 @@ class MainActivity : AppCompatActivity() {
         val adRequest = AdRequest.Builder().build()
         adView.loadAd(adRequest)
     }
+
     //바텀 네비게이션바
     private fun getBottomNavigationBar() {
         //하단 네비게이션바 클릭시
@@ -192,11 +195,13 @@ class MainActivity : AppCompatActivity() {
             true
         }
     }
+
     //툴바생성
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.for_toolbar, menu)
         return super.onCreateOptionsMenu(menu)
     }
+
     //툴바 메뉴 선택시
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
