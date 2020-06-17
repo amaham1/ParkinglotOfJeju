@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/seeWithList"
+    >
+    <fragment
+        android:id="@+id/seeWithList"
+        android:name="com.jursi.parkinglotofjeju.FragmentOfParkingLotList"
+        android:label="목록"
+        tools:layout="@layout/fragment_of_parking_lot_list">
+        <action
+            android:id="@+id/action_fragmentOfParkingLotList_to_fragmentOfParkingLotMap2"
+            app:destination="@id/seeWithMap" />
+    </fragment>
+    <fragment
+        android:id="@+id/seeWithMap"
+        android:name="com.jursi.parkinglotofjeju.FragmentOfParkingLotMap"
+        android:label="지도"
+        tools:layout="@layout/fragment_of_parking_lot_map"/>
+</navigation>
