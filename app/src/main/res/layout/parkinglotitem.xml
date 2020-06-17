@@ -1,96 +1,431 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="400dp"
-    >
+    xmlns:folding-cell="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
+    <data>
+        <variable
+            name="ParkingviewModel"
+            type="com.jursi.parkinglotofjeju.data.ParkinglotInfoItem" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/TV_ISTL_LCTN_ADDR"
+
+        <com.ramotion.foldingcell.FoldingCell
+            android:id="@+id/folding_cell"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="인제북쪽주차장"
-            android:textSize="30sp" />
+            app:animationDuration="1200"
+            app:backSideColor="#ffffff"
+            app:cameraHeight="50"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/TV_UPDT_DT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="20200516020412"
-            android:textSize="30sp" />
+            <LinearLayout
+                android:id="@+id/cell_content_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/TV_GNRL_RMND_PRZN_NUM"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="남은 일반 주차구역 100"
-            android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="남은 주차 구역"
+                    android:textAlignment="center"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/TV_HNDC_RMND_PRZN_NUM"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="남은 장애인용 주차구역 100"
-            android:textSize="30sp" />
+                <TextView
+                    android:id="@+id/TV_ISTL_LCTN_ADDRofIn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{ParkingviewModel.ISTL_LCTN_ADDR}"
+                    android:textAlignment="center"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toStartOf="@+id/cc"
+                    app:layout_constraintTop_toTopOf="@+id/cc"
+                    tool:text="지역명" />
 
-        <TextView
-            android:id="@+id/TV_LGVH_RMND_PRZN_NUM"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="남은 경차 주차구역 100"
-            android:textSize="30sp" />
+                <LinearLayout
+                    android:id="@+id/nomalcarLinear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+                    <!--일반전용-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/TV_EMVH_RMND_PRZN_NUM"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="남은 긴급차량 주차구역 100"
-            android:textSize="30sp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:background="@drawable/nomalcar"
+                            android:orientation="vertical"
+                            android:text="gggg">
 
-        <TextView
-            android:id="@+id/TV_HVVH_RMND_PRZN_NUM"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="남은 대형 주차구역 개수 100"
-            android:textSize="30sp" />
+                        </LinearLayout>
 
-        <TextView
-            android:id="@+id/TV_updatedTime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="13시간 00분 전 주차장 상황"
-            android:textSize="30sp" />
-    </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:background="#0f000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"
-        app:layout_constraintStart_toStartOf="@+id/verticalGuideline1"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.5" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="일반 전용"
+                                android:textAlignment="center"
+                                android:textColor="#999999"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/verticalGuideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2"/>
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/verticalGuideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.8"/>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                            <TextView
+                                android:id="@+id/TV_GNRL_RMND_PRZN_NUM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@{ParkingviewModel.GNRL_RMND_PRZN_NUM}"
+                                android:textAlignment="center"
+                                android:textColor="#999999"
+                                android:textSize="20sp"
+                                tool:text="100" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <!--일반전용 끝-->
+
+                    <!--장애인전용-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:background="@drawable/disabledcar"
+                            android:orientation="vertical"
+                            android:text="gggg">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="장애인 전용"
+                                android:textAlignment="center"
+                                android:textColor="#999999"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/TV_HNDC_RMND_PRZN_NUM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@{ParkingviewModel.HNDC_RMND_PRZN_NUM}"
+                                android:textAlignment="center"
+                                android:textColor="#999999"
+                                android:textSize="20sp"
+                                tool:text="100" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <!--장애인전용 끝-->
+                </LinearLayout>
+
+                <View
+                    android:layout_width="100dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/colorPrimary" />
+
+                <LinearLayout
+                    android:id="@+id/lightcarLinear"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+                    <!--경차전용-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="3"
+                            android:background="@drawable/lightcar"
+                            android:orientation="vertical"
+                            android:text="gggg">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="경차 전용"
+                                android:textAlignment="center"
+                                android:textColor="#999999"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/TV_LGVH_RMND_PRZN_NUM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@{ParkingviewModel.LGVH_RMND_PRZN_NUM}"
+                                android:textAlignment="center"
+                                android:textColor="#999999"
+                                android:textSize="20sp"
+                                tool:text="100" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--경차전용 끝-->
+
+                    <!--대형전용-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:layout_weight="3"
+                            android:background="@drawable/heavycar"
+                            android:orientation="vertical"
+                            android:text="gggg">
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="대형 전용"
+                                android:textAlignment="center"
+                                android:textColor="#999999"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/TV_HVVH_RMND_PRZN_NUM"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@{ParkingviewModel.HVVH_RMND_PRZN_NUM}"
+                                android:textAlignment="center"
+                                android:textColor="#999999"
+                                android:textSize="20sp"
+                                tool:text="100" />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!--대형전용 끝-->
+                </LinearLayout>
+
+                <View
+                    android:layout_width="100dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/colorPrimary" />
+                <!--긴급차량 전용-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_gravity="end"
+                            android:layout_marginEnd="50dp"
+                            android:background="@drawable/emergencycar"
+                            android:orientation="vertical">
+                        </ImageView>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="긴급차량 전용"
+                            android:textColor="#999999"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/TV_EMVH_RMND_PRZN_NUM"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="40dp"
+                            android:text="@{ParkingviewModel.EMVH_RMND_PRZN_NUM}"
+                            android:textColor="#999999"
+                            android:textSize="20sp"
+                            tool:text="100" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <!--경차전용 끝-->
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cell_title_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="2dp"
+                    app:cardElevation="5dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonGotoList"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:orientation="vertical">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:id="@+id/cc"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/TV_ISTL_LCTN_ADDR"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{ParkingviewModel.ISTL_LCTN_ADDR}"
+                                android:textAlignment="center"
+                                android:textSize="30sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tool:text="주차장 장소" />
+
+                            <View
+                                android:id="@+id/view2"
+                                android:layout_width="0dp"
+                                android:layout_height="2dp"
+                                android:background="@color/colorPrimary"
+                                app:layout_constraintBottom_toBottomOf="@id/horizonGuideline"
+                                app:layout_constraintEnd_toEndOf="@+id/verticalGuideline2"
+                                app:layout_constraintStart_toStartOf="@+id/verticalGuideline"
+                                app:layout_constraintVertical_bias="0.5" />
+
+                            <TextView
+                                android:id="@+id/TV_updatedTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="@={ParkingviewModel.TV_updatedTime}"
+                                android:textAlignment="center"
+                                android:textSize="15sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/view2"
+                                tool:text="2시간 30분전" />
+
+                            <androidx.constraintlayout.widget.Guideline
+                                android:id="@+id/verticalGuideline"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                app:layout_constraintGuide_percent="0.4" />
+
+                            <androidx.constraintlayout.widget.Guideline
+                                android:id="@+id/verticalGuideline2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                app:layout_constraintGuide_percent="0.6" />
+
+                            <androidx.constraintlayout.widget.Guideline
+                                android:id="@+id/horizonGuideline"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                app:layout_constraintGuide_percent="0.5" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            ​
+        </com.ramotion.foldingcell.FoldingCell>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
