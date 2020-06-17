@@ -6,7 +6,9 @@
 
 ViewModel 과 Livedata, Navigation을 활용하였습니다.
 
-XMLPullPaser를 사용하였습니다
+XMLPullPaser를 사용하였습니다.
+
+개발언어는 Kotlin 입니다.
 
 
 <h2>앱의 주요기능</h2> 
