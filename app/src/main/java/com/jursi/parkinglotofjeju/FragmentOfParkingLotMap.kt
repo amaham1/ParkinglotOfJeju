@@ -19,10 +19,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.jursi.parkinglotofjeju.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fragment_of_parking_lot_map.view.*
-import net.daum.mf.map.api.CalloutBalloonAdapter
-import net.daum.mf.map.api.MapPOIItem
-import net.daum.mf.map.api.MapPoint
-import net.daum.mf.map.api.MapView
+import net.daum.mf.map.api.*
 import splitties.toast.toast
 
 
@@ -31,7 +28,6 @@ class FragmentOfParkingLotMap : Fragment() {
     //지도관련
     private var mapView: MapView? = null
     private var mCalloutBalloon: View? = null
-    var locationManager: LocationManager? = null
     var latitude: Double = 0.0
     var longitude: Double = 0.0
 
@@ -65,6 +61,7 @@ class FragmentOfParkingLotMap : Fragment() {
         val mapViewContainer = rootView.findViewById(R.id.map_view) as RelativeLayout
         mapViewContainer.addView(mapView)
         mapView!!.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(33.500676, 126.529154), 9, true)//처음 보여질 중심점 변경
+
         //커스텀 마커
         val parkingViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         parkingViewModel.getStringISTL_LCTN_ADDR.observe(viewLifecycleOwner, Observer { it ->
@@ -72,6 +69,7 @@ class FragmentOfParkingLotMap : Fragment() {
                 getPlaceInfo(it[0], it[1], it[2], it[3], it[4], it[5], it[6], it[7])
             }
         })
+
         //맵에 일반인용 표시
         parkingViewModel.getStringGNRL_RMND_PRZN_NUM
             .observe(viewLifecycleOwner, Observer { it ->
@@ -117,13 +115,15 @@ class FragmentOfParkingLotMap : Fragment() {
             toast("현재위치를 불러옵니다.\n 시간이 걸릴 수 있어요")
             val marker = MapPOIItem()
             marker.itemName = "현재 위치"
-            marker.tag = 11
+            marker.tag = 15
             marker.mapPoint = MapPoint.mapPointWithGeoCoord(latitude,longitude)
             Log.d("1ee1", longitude.toString())
             marker.markerType = MapPOIItem.MarkerType.CustomImage // 마커 모양
             marker.customImageResourceId = R.drawable.pin
+            marker.isShowCalloutBalloonOnTouch = false //마커 클릭불가
+            mapView!!.moveCamera(CameraUpdateFactory.newMapPoint(MapPoint.mapPointWithGeoCoord(latitude,longitude)))
             mapView!!.addPOIItem(marker)
-            /*mapView!!.currentLocationTrackingMode =
+            /*mapView!!.currentLocationTrackingMode = //주기적으로 사용자 따라다니기
                MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
             */
             rootView.locatiofinder.setAnimation("lottie_gps.json")
