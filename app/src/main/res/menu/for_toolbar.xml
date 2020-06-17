@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    <item-->
+<!--        android:id="@+id/refresh"-->
+<!--        android:icon="@drawable/refresh"-->
+<!--        android:title="새로고침"-->
+<!--        app:showAsAction="always"-->
+<!--        />-->
+    <item
+        android:id="@+id/settingItem"
+        android:icon="@drawable/threedot"
+        android:title="앱 정보"
+        />
+    <item
+        android:id="@+id/sendEmail"
+        android:title="이메일 문의하기"
+        />
+</menu>
