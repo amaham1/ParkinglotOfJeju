@@ -1,46 +1,41 @@
 package com.jursi.parkinglotofjeju
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.jursi.parkinglotofjeju.data.ParkinglotInfoItem
+import com.jursi.parkinglotofjeju.databinding.ParkinglotitemBinding
+import com.ramotion.foldingcell.FoldingCell
 
-class recyclerViewAdapter(private val context: Context, private val parkingLotList: ArrayList<ParkinglotInfoItem>) :
+class recyclerViewAdapter(private val parkingLotList: List<ParkinglotInfoItem>) :
     RecyclerView.Adapter<recyclerViewAdapter.Holder>() {
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = LayoutInflater.from(context).inflate(R.layout.parkinglotitem, parent, false)
-        return Holder(view)
+        val binding =
+            ParkinglotitemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        return Holder(binding)
+    }
+
+    override fun onBindViewHolder(holder: Holder, position: Int) {
+        val parking = parkingLotList[position]
+        holder.binding.parkingviewModel = parking
+        holder.binding.executePendingBindings()
+        holder.varFolding_cell.setOnClickListener {
+            holder.varFolding_cell.toggle(false)
+        }
     }
 
     override fun getItemCount(): Int {
         return parkingLotList.size
     }
 
-    override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.ISTL_LCTN_ADDR.text = parkingLotList[position].ISTL_LCTN_ADDR
-        holder.UPDT_DT.text = parkingLotList[position].UPDT_DT
-        holder.GNRL_RMND_PRZN_NUM.text = parkingLotList[position].GNRL_RMND_PRZN_NUM
-        holder.HNDC_RMND_PRZN_NUM.text = parkingLotList[position].HNDC_RMND_PRZN_NUM
-        holder.LGVH_RMND_PRZN_NUM.text = parkingLotList[position].LGVH_RMND_PRZN_NUM
-        holder.EMVH_RMND_PRZN_NUM.text = parkingLotList[position].EMVH_RMND_PRZN_NUM
-        holder.HVVH_RMND_PRZN_NUM.text = parkingLotList[position].HVVH_RMND_PRZN_NUM
-        holder.TV_updatedTime.text = parkingLotList[position].TV_updatedTime
-
+    class Holder(val binding: ParkinglotitemBinding) : RecyclerView.ViewHolder(binding.root) {
+        var varFolding_cell = itemView.findViewById<FoldingCell>(R.id.folding_cell)
     }
-
-    class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var ISTL_LCTN_ADDR = itemView.findViewById<TextView>(R.id.TV_ISTL_LCTN_ADDR)
-        var UPDT_DT = itemView.findViewById<TextView>(R.id.TV_UPDT_DT)
-        var GNRL_RMND_PRZN_NUM = itemView.findViewById<TextView>(R.id.TV_GNRL_RMND_PRZN_NUM)
-        var HNDC_RMND_PRZN_NUM = itemView.findViewById<TextView>(R.id.TV_HNDC_RMND_PRZN_NUM)
-        var LGVH_RMND_PRZN_NUM = itemView.findViewById<TextView>(R.id.TV_LGVH_RMND_PRZN_NUM)
-        var EMVH_RMND_PRZN_NUM = itemView.findViewById<TextView>(R.id.TV_EMVH_RMND_PRZN_NUM)
-        var HVVH_RMND_PRZN_NUM = itemView.findViewById<TextView>(R.id.TV_HVVH_RMND_PRZN_NUM)
-        var TV_updatedTime = itemView.findViewById<TextView>(R.id.TV_updatedTime)
-
-    }
-
 }
