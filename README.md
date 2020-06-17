@@ -4,7 +4,7 @@
 
 제주 실시간 주차장API를 활용한 앱입니다.
 
-ViewModel 과 Livedata를 활용하였습니다.
+ViewModel 과 Livedata, Navigation을 활용하였습니다.
 
 XMLPullPaser를 사용하였습니다
 
