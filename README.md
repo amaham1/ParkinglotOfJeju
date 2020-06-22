@@ -41,3 +41,5 @@ XMLPullPaser를 사용하였습니다.
     - DaumMap: 지도 맵을 구현하고 각종 기능을 사용하기 위해 사용하였습니다.
     
     - Ted Permission: Permission의 효율적 관리를 위해 사용하였습니다.
+    
+    - KaKaoMap: 지도를 사용하기 위해 KaKaoMap을 이용하였습니다.
