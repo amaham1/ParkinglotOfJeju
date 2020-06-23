@@ -4,6 +4,11 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.android.application'
+
+apply plugin: 'com.google.gms.google-services'
+
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.3"
@@ -20,7 +25,7 @@ android {
         applicationId "com.jursi.parkinglotofjeju"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 5
+        versionCode 9
         versionName "1.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -63,8 +68,9 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'commons-net:commons-net:3.6'
-    implementation 'com.google.android.gms:play-services-ads:19.1.0'
+    implementation 'com.google.android.gms:play-services-ads:19.2.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.firebase:firebase-analytics:17.4.3'
 
     // Splitties
     implementation 'com.louiscad.splitties:splitties-activities:3.0.0-alpha06'
@@ -78,10 +84,7 @@ dependencies {
     // Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0-rc01'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.0-rc01'
-    // ViewModel
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
-    // LiveData
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+
     // DaumMap
     implementation files('libs/libDaumMapAndroid.jar')
     // Permission
