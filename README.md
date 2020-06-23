@@ -4,6 +4,13 @@
 
 제주 실시간 주차장API를 활용한 앱입니다.
 
+ViewModel 과 Livedata, Navigation, DataBinding을 활용하였습니다.
+
+XMLPullPaser를 사용하였습니다.
+
+개발언어는 Kotlin 입니다.
+
+
 <h2>앱의 주요기능</h2> 
 
 두 개의 탭으로 정보를 제공합니다
@@ -34,3 +41,5 @@
     - DaumMap: 지도 맵을 구현하고 각종 기능을 사용하기 위해 사용하였습니다.
     
     - Ted Permission: Permission의 효율적 관리를 위해 사용하였습니다.
+    
+    - KaKaoMap: 지도를 사용하기 위해 KaKaoMap을 이용하였습니다.
