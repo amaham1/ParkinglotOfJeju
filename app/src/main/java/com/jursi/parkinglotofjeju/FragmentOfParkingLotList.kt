@@ -24,6 +24,14 @@ class FragmentOfParkingLotList : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_of_parking_lot_list, container, false)
         //리사이클러뷰 지정
         mRecyclerView = rootView.findViewById(R.id.recyclerViewOfMain)
+        parkingViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        parkingViewModel?.data?.observe(viewLifecycleOwner, Observer { it ->
+            it?.let {
+                setParkinglot(it)
+                shimmer_view_container.stopShimmerAnimation()
+                shimmer_view_container.visibility = GONE
+            }
+        })
         return rootView
     } //onCreateView
 
@@ -51,14 +59,7 @@ class FragmentOfParkingLotList : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        parkingViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        parkingViewModel?.data?.observe(viewLifecycleOwner, Observer { it ->
-            it?.let {
-                setParkinglot(it)
-                shimmer_view_container.stopShimmerAnimation()
-                shimmer_view_container.visibility = GONE
-            }
-        })
+
     }
 }
 
