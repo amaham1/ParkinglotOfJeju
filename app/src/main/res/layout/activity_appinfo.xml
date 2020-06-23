@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="앱 버전 1.0\n개발자 : JuRSI"
+        android:text="앱 버전 1.1\n개발자 : JuRSI"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/verticalGuideline2"
