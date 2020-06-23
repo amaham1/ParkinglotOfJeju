@@ -3,6 +3,8 @@ package com.jursi.parkinglotofjeju
 import android.Manifest
 import android.content.Context.LOCATION_SERVICE
 import android.content.pm.PackageManager
+import android.location.Location
+import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
@@ -28,8 +30,8 @@ class FragmentOfParkingLotMap : Fragment() {
     //지도관련
     private var mapView: MapView? = null
     private var mCalloutBalloon: View? = null
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
+    var getLatitude: Double = 0.0
+    var getLongitude: Double = 0.0
 
     private var aar1: String? = null
     private var aarr1: String? = null
@@ -55,6 +57,7 @@ class FragmentOfParkingLotMap : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val rootView = inflater.inflate(R.layout.fragment_of_parking_lot_map, container, false)
+        val parkingViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         //카카오 지도 불러오기
         mCalloutBalloon = layoutInflater.inflate(R.layout.custom_kakao_map_marker, null)
         mapView = MapView(activity)
@@ -63,7 +66,6 @@ class FragmentOfParkingLotMap : Fragment() {
         mapView!!.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(33.500676, 126.529154), 9, true)//처음 보여질 중심점 변경
 
         //커스텀 마커
-        val parkingViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         parkingViewModel.getStringISTL_LCTN_ADDR.observe(viewLifecycleOwner, Observer { it ->
             it?.let {
                 getPlaceInfo(it[0], it[1], it[2], it[3], it[4], it[5], it[6], it[7])
@@ -102,26 +104,43 @@ class FragmentOfParkingLotMap : Fragment() {
         mapView!!.setCalloutBalloonAdapter(CustomCalloutBalloonAdapter())
 
         //현위치표시
-        val lm = requireActivity().getSystemService(LOCATION_SERVICE) as LocationManager?
+        val lm = requireActivity().getSystemService(LOCATION_SERVICE) as LocationManager
         rootView.locatiofinder.setOnClickListener {
+            val isNetworkEnabled: Boolean = lm.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+            val isGPSEnabled: Boolean = lm.isProviderEnabled(LocationManager.GPS_PROVIDER)
             if (Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(requireActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
             } else {
-                val location = lm?.getLastKnownLocation(LocationManager.NETWORK_PROVIDER) //인터넷기반으로 위치를 찾음. GPS 원하면 GPS_PROVIDER <- 사용
-                latitude = location?.latitude!!
-                longitude = location.longitude
+                when {
+                    isNetworkEnabled -> {
+                        val location =
+                            lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER) //인터넷기반으로 위치를 찾음
+                        getLongitude = location?.longitude!!
+                        getLatitude = location.latitude
+                        toast("현재위치를 불러옵니다.")
+                    }
+                    isGPSEnabled -> {
+                        val location =
+                            lm.getLastKnownLocation(LocationManager.GPS_PROVIDER) //GPS 기반으로 위치를 찾음
+                        getLongitude = location?.longitude!!
+                        getLatitude = location.latitude
+                        toast("현재위치를 불러옵니다.")
+                    }
+                    !isGPSEnabled && !isNetworkEnabled -> {
+                        toast("GPS나 네트워크를 사용해주세요")
+                    }
+                }
+                lm.removeUpdates(gpsLocationListener)
             }
-            toast("현재위치를 불러옵니다.\n 시간이 걸릴 수 있어요")
             val marker = MapPOIItem()
             marker.itemName = "현재 위치"
-            marker.tag = 15
-            marker.mapPoint = MapPoint.mapPointWithGeoCoord(latitude,longitude)
-            Log.d("1ee1", longitude.toString())
+            marker.mapPoint = MapPoint.mapPointWithGeoCoord(getLatitude,getLongitude)
+
             marker.markerType = MapPOIItem.MarkerType.CustomImage // 마커 모양
             marker.customImageResourceId = R.drawable.pin
             marker.isShowCalloutBalloonOnTouch = false //마커 클릭불가
-            mapView!!.moveCamera(CameraUpdateFactory.newMapPoint(MapPoint.mapPointWithGeoCoord(latitude,longitude)))
+            mapView!!.moveCamera(CameraUpdateFactory.newMapPoint(MapPoint.mapPointWithGeoCoord(getLatitude,getLongitude)))
             mapView!!.addPOIItem(marker)
             /*mapView!!.currentLocationTrackingMode = //주기적으로 사용자 따라다니기
                MapView.CurrentLocationTrackingMode.TrackingModeOnWithoutHeading
@@ -135,6 +154,22 @@ class FragmentOfParkingLotMap : Fragment() {
     //OnCreateView 끝
     //OnCreateView 끝
 
+
+//위에 *몇초 간격과 몇미터를 이동했을시에 호출되는 부분* 에 필요한 정보
+    //주기적으로 위치 업데이트 안할거면 사용하지 않음
+    val gpsLocationListener = object : LocationListener {
+        override fun onLocationChanged(location: Location) {
+            val provider: String = location.provider
+            val longitude: Double = location.longitude
+            val latitude: Double = location.latitude
+            val altitude: Double = location.altitude
+        }
+
+        //아래 3개함수는 형식상 필수부분
+        override fun onStatusChanged(provider: String, status: Int, extras: Bundle) {}
+        override fun onProviderEnabled(provider: String) {}
+        override fun onProviderDisabled(provider: String) {}
+    }
 
     //지도용 주차장 정보
     private fun getPlaceInfo(place1: String, place2: String, place3: String, place4: String, place5: String, place6: String, place7: String, place8: String) {
@@ -269,6 +304,7 @@ class FragmentOfParkingLotMap : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
+        //카카오지도 해제
         mapView?.currentLocationTrackingMode = MapView.CurrentLocationTrackingMode.TrackingModeOff
         mapView?.setShowCurrentLocationMarker(false)
     }
