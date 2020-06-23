@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1024841628175",
+    "firebase_url": "https://parkinglotofjeju.firebaseio.com",
+    "project_id": "parkinglotofjeju",
+    "storage_bucket": "parkinglotofjeju.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1024841628175:android:e77d3854eb7c6de893417a",
+        "android_client_info": {
+          "package_name": "com.jursi.parkinglotofjeju"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1024841628175-keakkpbvvcc2j6r93n0tevkfnq4lcav2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCo5v7-c2Ep36QEXCgnaG_kFR30sbThhh4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1024841628175-keakkpbvvcc2j6r93n0tevkfnq4lcav2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
