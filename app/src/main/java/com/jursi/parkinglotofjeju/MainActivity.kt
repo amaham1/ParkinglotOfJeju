@@ -75,6 +75,12 @@ class MainActivity : AppCompatActivity() {
 
     } // onCreate 끝
 
+
+
+
+
+
+
     override fun onResume() {
         super.onResume()
         mAppUpdateManager!!.appUpdateInfo.addOnSuccessListener { appUpdateInfo ->
