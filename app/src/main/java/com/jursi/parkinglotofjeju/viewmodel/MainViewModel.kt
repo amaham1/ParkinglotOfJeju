@@ -67,7 +67,7 @@ class MainViewModel : ViewModel() {
             while (urlCnt <= 8) {
                 //요청할 url를 만듦
                 requestUrl =
-                    "http://openapi.jejuits.go.kr/OPEN_API/pisInfo/getPisInfo?serviceKey=LtXmZ8ILA115JsYkYujTf%2F34o5FvNXJVGy%2FXgmUR5RekNLwM46cKLBSbkYI9lIyoamXSlplQj4x0095Ga7rYRQ%3D%3D&pageNo=${urlCnt}&startPage=1&numOfRows=1&pageSize=10"
+                    "http://openapi.jejuits.go.kr/OPEN_API/pisInfo/getPisInfo?serviceKey=YOUR_SERVICE_KEY&pageNo=${urlCnt}&startPage=1&numOfRows=1&pageSize=10"
                 //try를 통해 요청을 시작
                 try {
                     var itemList = false //가져올 XML라인의 첫 태크
